@@ -8,7 +8,52 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: moving_curtains
-    second: {fileID: 15302, guid: 0000000000000000f000000000000000, type: 0}
+    second: {fileID: 2100000, guid: c8b158f67c6d4f24ea479f2c414c77fd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: seating1
+    second: {fileID: 2100000, guid: c74c462e252d3894bbdb48bdfa56c0b7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: side_curtains
+    second: {fileID: 2100000, guid: 5876dce96c8445e4281562ff3795183b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stage
+    second: {fileID: 2100000, guid: 9e58291b0351ba544816c5d0314d2461, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: theater_stuff_ramp
+    second: {fileID: 2100000, guid: 65a10df6d38a36c43b3da282b2f4e3e3, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: chairs finished
+    second: {fileID: 2800000, guid: 95f4988557ffad44fbd14e5f996b1064, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: curtain UVs
+    second: {fileID: 2800000, guid: 5dc103b5e9c1f274d8e2fb0bba3dec30, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: ramp finished
+    second: {fileID: 2800000, guid: 0ea2c0266568fdc4bad261e62b31b1e9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: side curtain uvs
+    second: {fileID: 2800000, guid: 2b7ecaf8285f2b14e8dea2295230241f, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: stage UVs
+    second: {fileID: 2800000, guid: 5320a21fee1d8ec478cbc90dd95848d5, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
