@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Theo_Scene.unity
+    guid: 5998552b7bf1c1d49976f22aa57c9211
   m_configObjects: {}
