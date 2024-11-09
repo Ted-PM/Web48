@@ -10,7 +10,7 @@ public class PlayerMover : MonoBehaviour
     public float jumpForce = 5.0f;
 
     private CharacterController characterController;
-    private float verticalRotation = 0;
+    //private float verticalRotation = 0;
     private float verticalVelocity = 0;
 
     // Start is called before the first frame update

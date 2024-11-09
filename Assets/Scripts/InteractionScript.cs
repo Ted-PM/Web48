@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
@@ -14,6 +15,9 @@ public class InteractionScript : MonoBehaviour
 
     public GameObject interactPrompt;
     public TextMeshProUGUI interactText;
+
+
+
 
     //SpotLight SpotLight;
 
@@ -52,7 +56,11 @@ public class InteractionScript : MonoBehaviour
     void beginInteraction()
     {
         Debug.Log("IM bneing touched!!");
-        GameManager.instance.beginInteraction(objectID);
+        ZoomOnObject.instance.startZoom(this.transform.position, objectID);
+
+
+        //GameManager.instance.beginInteraction(objectID);
 
     }
+
 }

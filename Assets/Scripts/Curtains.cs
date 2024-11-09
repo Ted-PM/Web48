@@ -20,41 +20,58 @@ public class Curtains : MonoBehaviour
     bool canOpen = false;
     bool canClose = false;
 
+    public bool isCutscene;
+
     //bool opening = false;
     //bool closing = false;
     private void Start()
     {
-        curtainL.transform.position = LcurtClose.position;
-        curtainR.transform.position = RcurtClose.position;
-
+        if (!isCutscene)
+        {
+            curtainL.transform.position = LcurtClose.position;
+            curtainR.transform.position = RcurtClose.position;
+        }
+        else
+        {
+            curtainL.transform.position = LcurtOpen.position;
+            curtainR.transform.position = RcurtOpen.position;
+        }
+        
+        if (isCutscene)
+        {
+            StartCoroutine(StartCooldownClose());
+        }
         //canOpen = false;
         //StartCoroutine(StartCooldown());
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (!isCutscene)
         {
-            if((curtainL.transform.position.x == LcurtClose.position.x) && (curtainR.transform.position.x == RcurtClose.position.x))        // aka curtains are closed
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                if ((curtainL.transform.position.x == LcurtClose.position.x) && (curtainR.transform.position.x == RcurtClose.position.x))        // aka curtains are closed
+                {
+                    canClose = false;
+                    Debug.Log("Start open curtains");
+                    canOpen = true;
+                }
+                else if ((curtainL.transform.position.x == LcurtOpen.position.x) && (curtainR.transform.position.x == RcurtOpen.position.x))    // aka curtains are open
+                {
+                    canOpen = false;
+                    Debug.Log("Start close curtains");
+                    canClose = true;
+                }
+            }
+
+            if ((curtainL.transform.position.x == LcurtClose.position.x) && (curtainR.transform.position.x == RcurtClose.position.x))        // aka curtains are closed
             {
                 canClose = false;
-                Debug.Log("Start open curtains");
-                canOpen = true;
             }
-            else if ((curtainL.transform.position.x == LcurtOpen.position.x) && (curtainR.transform.position.x == RcurtOpen.position.x))    // aka curtains are open
+            if ((curtainL.transform.position.x == LcurtOpen.position.x) && (curtainR.transform.position.x == RcurtOpen.position.x))    // aka curtains are open
             {
                 canOpen = false;
-                Debug.Log("Start close curtains");
-                canClose = true;
             }
-        }
-
-        if ((curtainL.transform.position.x == LcurtClose.position.x) && (curtainR.transform.position.x == RcurtClose.position.x))        // aka curtains are closed
-        {
-            canClose = false;
-        }
-        if ((curtainL.transform.position.x == LcurtOpen.position.x) && (curtainR.transform.position.x == RcurtOpen.position.x))    // aka curtains are open
-        {
-            canOpen = false;
         }
         //if (Input.GetKeyDown(KeyCode.O))
         //{
