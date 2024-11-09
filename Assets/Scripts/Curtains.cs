@@ -16,23 +16,59 @@ public class Curtains : MonoBehaviour
     public GameObject curtainR;
 
     public float CooldownDuration = 1f;
-    bool canOpen = true;
 
+    bool canOpen = false;
+    bool canClose = false;
+
+    //bool opening = false;
+    //bool closing = false;
     private void Start()
     {
         curtainL.transform.position = LcurtClose.position;
         curtainR.transform.position = RcurtClose.position;
 
-        canOpen = false;
+        //canOpen = false;
+        //StartCoroutine(StartCooldown());
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            canOpen = true;
+            if((curtainL.transform.position.x == LcurtClose.position.x) && (curtainR.transform.position.x == RcurtClose.position.x))        // aka curtains are closed
+            {
+                canClose = false;
+                Debug.Log("Start open curtains");
+                canOpen = true;
+            }
+            else if ((curtainL.transform.position.x == LcurtOpen.position.x) && (curtainR.transform.position.x == RcurtOpen.position.x))    // aka curtains are open
+            {
+                canOpen = false;
+                Debug.Log("Start close curtains");
+                canClose = true;
+            }
         }
 
+        if ((curtainL.transform.position.x == LcurtClose.position.x) && (curtainR.transform.position.x == RcurtClose.position.x))        // aka curtains are closed
+        {
+            canClose = false;
+        }
+        if ((curtainL.transform.position.x == LcurtOpen.position.x) && (curtainR.transform.position.x == RcurtOpen.position.x))    // aka curtains are open
+        {
+            canOpen = false;
+        }
+        //if (Input.GetKeyDown(KeyCode.O))
+        //{
+        //    canClose = false;
+        //    canOpen = true;
+        //}
+        //if (Input.GetKeyDown(KeyCode.C))
+        //{
+        //    canClose = true;
+        //    canOpen = false;
+        //}
+
         openCurtain();
+        closeCurtains();
     }
 
     void openCurtain()
@@ -43,7 +79,11 @@ public class Curtains : MonoBehaviour
             if (curtainL.transform.position.x > LcurtOpen.transform.position.x)
             {
                 curtainL.transform.position += new Vector3((float)-0.5, 0, 0);
-
+                //curtainR.transform.position += new Vector3((float)0.5, 0, 0);
+            }
+            else
+            {
+                canOpen = false;
             }
             if (curtainR.transform.position.x < RcurtOpen.transform.position.x)
             {
@@ -51,6 +91,30 @@ public class Curtains : MonoBehaviour
 
             }
             StartCoroutine(StartCooldown());
+        }
+
+    }
+
+    void closeCurtains()
+    {
+
+        if (canClose)
+        {
+            if (curtainL.transform.position.x < LcurtClose.transform.position.x)
+            {
+                curtainL.transform.position += new Vector3((float)0.5, 0, 0);
+                //curtainR.transform.position += new Vector3((float)-0.5, 0, 0);
+            }
+            else
+            {
+                canClose = false;
+            }
+            if (curtainR.transform.position.x > RcurtClose.transform.position.x)
+            {
+                curtainR.transform.position += new Vector3((float)-0.5, 0, 0);
+
+            }
+            StartCoroutine(StartCooldownClose());
         }
 
     }
@@ -64,5 +128,16 @@ public class Curtains : MonoBehaviour
         //openCurtain();
 
         canOpen = true;
+    }
+
+    public IEnumerator StartCooldownClose()
+    {
+        canClose = false;
+
+        yield return new WaitForSeconds(CooldownDuration);
+
+        //openCurtain();
+
+        canClose = true;
     }
 }
