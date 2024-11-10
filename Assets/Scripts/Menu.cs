@@ -10,7 +10,7 @@ public class Menu : MonoBehaviour
     public Image characterImage;
 
     static List<string> characterDescriptions;
-    public List<Image> characterImageList;
+    public List<Sprite> characterImageList;
 
     int index;
     int numDescriptions;
@@ -20,6 +20,7 @@ public class Menu : MonoBehaviour
         if (characterDescriptions == null)
         {
             characterDescriptions = new List<string>();
+            //characterImageList = new List<Sprite>();
         }
 
         //DontDestroyOnLoad(this.gameObject);
@@ -48,12 +49,14 @@ public class Menu : MonoBehaviour
             characterDescriptions.Add("Miles:\r\n\n- Loyal, but bitter\r\n- Insecure shadow\r\n- Frustrated friend\r\n- Holds grudges");
             characterDescriptions.Add("Silas:\r\n\n- Eager rival\r\n- Hungry for spotlight\r\n- Rash and overconfident\r\n- Idolizes success");
             characterDescriptions.Add("Kylie:\r\n\n- Faithful, yet weary\r\n- Sees my flaws\r\n- Kind-hearted strength\r\n- Devoted, despite all");
+
         }
 
         numDescriptions = characterDescriptions.Count;
 
         characterDescriptor.SetText(characterDescriptions[index]);
-        characterImage.sprite = characterImageList[index].sprite;
+        characterImage.sprite = characterImageList[index];
+        //this.gameObject.GetComponent<SpriteRenderer>().sprite = characterImageList[index].sprite;
         //displayNextCharacter();
     }
 
@@ -68,7 +71,7 @@ public class Menu : MonoBehaviour
             index = 0;
         }
         characterDescriptor.SetText(characterDescriptions[index]);
-        characterImage.sprite = characterImageList[index].sprite;
+        characterImage.sprite = characterImageList[index];
     }
 
     public void displayPrevCharacter()
@@ -81,7 +84,7 @@ public class Menu : MonoBehaviour
             index = numDescriptions - 1;
         }
         characterDescriptor.SetText(characterDescriptions[index]);
-        characterImage.sprite = characterImageList[index].sprite;
+        characterImage.sprite = characterImageList[index];
     }
 
     public void addCharacter(string text) // cyar index 
