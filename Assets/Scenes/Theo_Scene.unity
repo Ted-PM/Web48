@@ -1776,6 +1776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4929455f9f1d24f9cfdddb2ab41e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  start: 0
   waitTime: 5
 --- !u!1 &1067137420
 GameObject:
@@ -3829,6 +3830,10 @@ PrefabInstance:
     - target: {fileID: 7561855738329545512, guid: 471f4695ff0782040abb69abbc6508e0, type: 3}
       propertyPath: objectName
       value: SCENE 2 - THE OBJECT
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561855738329545512, guid: 471f4695ff0782040abb69abbc6508e0, type: 3}
+      propertyPath: characterInfo
+      value: he is called steveve
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

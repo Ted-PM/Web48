@@ -8,14 +8,17 @@ public class Menu : MonoBehaviour
     public static Menu instance;
     public TextMeshProUGUI characterDescriptor;
 
-    public List<string> characterDescriptions;
+    static List<string> characterDescriptions;
 
     int index;
     int numDescriptions;
 
     private void Awake()
     {
+        characterDescriptions = new List<string>();
+        //DontDestroyOnLoad(this.gameObject);
         instance = this;
+
     }
 
     // Start is called before the first frame update
@@ -23,6 +26,11 @@ public class Menu : MonoBehaviour
     {
         numDescriptions = characterDescriptions.Count;
         index = 0;
+
+
+        characterDescriptions.Add("Hello i am charmacter 1");
+        characterDescriptions.Add("am chamracetre 2 :D");
+        characterDescriptions.Add("cool character 3, hes so cool");
         displayNextCharacter();
     }
 
@@ -30,7 +38,7 @@ public class Menu : MonoBehaviour
 
     public void displayNextCharacter()
     {
-        
+        numDescriptions = characterDescriptions.Count;
         index++;
         if (index >= numDescriptions)
         {
@@ -41,6 +49,7 @@ public class Menu : MonoBehaviour
 
     public void displayPrevCharacter()
     {
+        numDescriptions = characterDescriptions.Count;
         index--;
 
         if (index < 0)
@@ -55,5 +64,7 @@ public class Menu : MonoBehaviour
     {
         characterDescriptions.Add(text.ToString());
         numDescriptions = characterDescriptions.Count;
+        DontDestroyOnLoad(instance);
+        GameManager.instance.menu.SetActive(false);
     }
 }

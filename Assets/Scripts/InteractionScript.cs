@@ -16,7 +16,7 @@ public class InteractionScript : MonoBehaviour
     public GameObject interactPrompt;
     public TextMeshProUGUI interactText;
 
-
+    public string characterInfo;
 
 
     //SpotLight SpotLight;
@@ -56,6 +56,12 @@ public class InteractionScript : MonoBehaviour
     void beginInteraction()
     {
         Debug.Log("IM bneing touched!!");
+
+        GameManager.instance.menu.SetActive(true);
+        //FindFirstObjectByType<Menu>().addCharacter(characterInfo);
+        Menu.instance.addCharacter(characterInfo);
+        //GameManager.instance.menu.SetActive(false);
+
         ZoomOnObject.instance.startZoom(this.transform.position, objectID);
 
 

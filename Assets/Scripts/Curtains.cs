@@ -30,6 +30,7 @@ public class Curtains : MonoBehaviour
         {
             curtainL.transform.position = LcurtClose.position;
             curtainR.transform.position = RcurtClose.position;
+            StartCoroutine(StartCooldown());
         }
         else
         {
@@ -72,6 +73,9 @@ public class Curtains : MonoBehaviour
             {
                 canOpen = false;
             }
+
+            
+
         }
         //if (Input.GetKeyDown(KeyCode.O))
         //{

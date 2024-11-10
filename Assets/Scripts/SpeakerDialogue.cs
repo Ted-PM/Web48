@@ -15,6 +15,10 @@ public class SpeakerDialogue : MonoBehaviour
     public string characterDescription;
 
     int counter = 0;
+    private void Start()
+    {
+        speakerCanvas.SetActive(true);
+    }
 
     private void Update()
     {
@@ -23,28 +27,26 @@ public class SpeakerDialogue : MonoBehaviour
             updateDialogue();
         }
     }
-    private void Start()
+
+
+    //public void enableDialogue()
+    //{
+    //    speakerCanvas.SetActive(true);
+    //}
+
+    void updateDialogue()
     {
         speakerCanvas.SetActive(true);
-    }
 
-    public void enableDialogue()
-    {
-        speakerCanvas.SetActive(true);
-    }
-
-    public void updateDialogue()
-    {
         if (counter < Dialogue.Count)
         {
-            speakerDialogue.SetText(characterName + ": " +Dialogue[counter]);
+            speakerDialogue.SetText(characterName + ": " + Dialogue[counter]);
             counter++;
         }
         else
         {
+            speakerCanvas.SetActive(false);
             GameManager.instance.beginInteraction(1);
-
-            Menu.instance.addCharacter(characterDescription);
         }
     }
 }
