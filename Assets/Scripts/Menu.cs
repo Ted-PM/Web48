@@ -96,7 +96,7 @@ public class Menu : MonoBehaviour
 
     public void addCharacterInfo(string newInfo, int charIndex)
     {
-        characterDescriptions[charIndex] = characterDescriptions[charIndex].ToString() + newInfo;
+        characterDescriptions[charIndex] = characterDescriptions[charIndex].ToString() + "\n- " + newInfo;
         GameManager.instance.menu.SetActive(false);
     }
 }

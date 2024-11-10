@@ -1458,12 +1458,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e38b08a09848294a86d51d25ad99ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectID: 3
+  newMenuText: 
   minDistance: 5
   objectName: PresentPerson
   interactPrompt: {fileID: 205554478}
   interactText: {fileID: 1740854009}
   myConversation: {fileID: 1215634738}
-  objectID: 3
 --- !u!65 &571205409
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1710,12 +1711,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e38b08a09848294a86d51d25ad99ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectID: 2
+  newMenuText: 
   minDistance: 5
   objectName: FuturPerson
   interactPrompt: {fileID: 819653950}
   interactText: {fileID: 1405267503}
   myConversation: {fileID: 404623606}
-  objectID: 2
 --- !u!65 &620925999
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5759,12 +5761,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e38b08a09848294a86d51d25ad99ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectID: -1
+  newMenuText: Nicholas is dumb
   minDistance: 5
   objectName: Kyle
   interactPrompt: {fileID: 4764854238407086582}
   interactText: {fileID: 5858142578590419256}
   myConversation: {fileID: 1195496489}
-  objectID: 1
 --- !u!33 &7949992047575341383
 MeshFilter:
   m_ObjectHideFlags: 0

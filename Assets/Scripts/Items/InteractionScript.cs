@@ -9,6 +9,16 @@ using UnityEngine.UI;
 
 public class InteractionScript : MonoBehaviour
 {
+    public int objectID = -1;
+    /// <^corresponds to character in menu>
+    /// 0. Nicholas
+    /// 1. Joana
+    /// 2. Miles
+    /// 3. Silas
+    /// 4. Kylie
+    /// </summary>
+    public string newMenuText = "";
+
     Transform playerPos;
     public float minDistance;
 
@@ -29,7 +39,7 @@ public class InteractionScript : MonoBehaviour
       
     bool canInteract = true;
 
-    public int objectID;           // will be 1,2 or 3, decides which scesne to load after interacted with
+    //public int objectID;           // will be 1,2 or 3, decides which scesne to load after interacted with
 
     void Start()
     {
@@ -43,14 +53,15 @@ public class InteractionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Vector3.Distance(playerPos.position, this.transform.position) <= minDistance) && !interactPrompt.activeSelf)
+        if ((Vector3.Distance(playerPos.position, this.transform.position) <= minDistance) && !interactPrompt.activeSelf && (!ConversationManager.Instance.IsConversationActive))
         {
             interactPrompt.SetActive(true);
         }
-        else if (!(Vector3.Distance(playerPos.position, this.transform.position) <= minDistance))
+        else if (!(Vector3.Distance(playerPos.position, this.transform.position) <= minDistance) || ConversationManager.Instance.IsConversationActive)
         {
             interactPrompt.SetActive(false);
         }
+
 
         if (Input.GetKeyDown(KeyCode.E) && (interactPrompt.activeSelf) && (!GameManager.instance.menu.activeSelf) && canInteract)
         {
@@ -76,6 +87,23 @@ public class InteractionScript : MonoBehaviour
         ConversationManager.Instance.StartConversation(myConversation);
         canInteract = false;
 
+        if (objectID != -1)
+        {
+            addDescToMenu();
+        }
+
     }
+
+    void addDescToMenu()
+    {
+        if (objectID != -1)
+        {
+            GameManager.instance.menu.SetActive(true);
+            Menu.instance.addCharacterInfo(newMenuText, objectID);
+            objectID = -1;
+        }
+    }
+
+
 
 }
