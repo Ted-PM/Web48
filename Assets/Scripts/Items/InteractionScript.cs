@@ -46,7 +46,7 @@ public class InteractionScript : MonoBehaviour
         //SpotLight = GetComponent<SpotLight>();  
         playerPos = FindFirstObjectByType<script_movement>().transform;         // get player location
         interactPrompt.SetActive(false);                                    // default interact prompt to off
-        if (objectID == -1)
+        if (objectID == -1 && newMenuText == "")
         {
             interactText.SetText("Press 'E' to speak to " + objectName + "."); // set text to be displayed to string chosen in unity
         }
