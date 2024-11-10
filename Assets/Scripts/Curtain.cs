@@ -10,32 +10,38 @@ public class ToggleMoveObject : MonoBehaviour
 
     private bool isAtTarget = false; // Flag to check if the object is currently at the target position
 
-    void Start()
+    private void Awake()
     {
-        // Store the object's initial position and set the target position
         startPosition = transform.position;
         targetPosition = startPosition + new Vector3(moveDistance, 0, 0);
     }
 
-    void Update()
+    void Start()
     {
-        // Check if the F key is pressed
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            if (isAtTarget)
-            {
-                // If the object is at the target position, move it back to the start position
-                StartCoroutine(SmoothMove(startPosition));
-            }
-            else
-            {
-                // If the object is not at the target position, move it to the target position
-                StartCoroutine(SmoothMove(targetPosition));
-            }
+        // Store the object's initial position and set the target position
+        //startPosition = transform.position;
+        //targetPosition = startPosition + new Vector3(moveDistance, 0, 0);
 
-            // Toggle the flag to track the current position
-            isAtTarget = !isAtTarget;
+        openCurtains();
+    }
+
+
+
+    public void openCurtains()
+    {
+        if (isAtTarget)
+        {
+            // If the object is at the target position, move it back to the start position
+            StartCoroutine(SmoothMove(startPosition));
         }
+        else
+        {
+            // If the object is not at the target position, move it to the target position
+            StartCoroutine(SmoothMove(targetPosition));
+        }
+
+        // Toggle the flag to track the current position
+        isAtTarget = !isAtTarget;
     }
 
     // Smoothly move the object towards the target position
