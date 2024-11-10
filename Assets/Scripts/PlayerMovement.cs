@@ -37,16 +37,15 @@ public class script_movement : MonoBehaviour
     void FixedUpdate()
     {
         movePlayer();
-
+    
         
        lAnimator.SetBool("Walking", _input.magnitude != 0);
        Debug.Log("Bool is " + lAnimator.GetBool("Walking"));
-        
     }
 
     void setInput()
     {
-        _input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        _input = new Vector3(-Input.GetAxisRaw("Horizontal"), 0, -Input.GetAxisRaw("Vertical"));
     }
 
     void direction()
@@ -60,6 +59,6 @@ public class script_movement : MonoBehaviour
 
     void movePlayer()
     {
-        playerRB.MovePosition((transform.position - (transform.forward * _input.normalized.magnitude) * speed * Time.deltaTime));
+        playerRB.MovePosition((transform.position + (transform.forward * _input.normalized.magnitude) * speed * Time.deltaTime));
     }
 }
