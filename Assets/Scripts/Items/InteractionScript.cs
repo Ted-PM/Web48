@@ -17,7 +17,8 @@ public class InteractionScript : MonoBehaviour
     public GameObject interactPrompt;
     public TextMeshProUGUI interactText;
 
-    [SerializeField] public NPCConversation myConversation;
+    //[SerializeField] public NPCConversation myConversation;
+    public NPCConversation myConversation;
 
 
 
@@ -25,7 +26,7 @@ public class InteractionScript : MonoBehaviour
 
 
     //SpotLight SpotLight;
-
+      
     bool canInteract = true;
 
     public int objectID;           // will be 1,2 or 3, decides which scesne to load after interacted with
@@ -53,7 +54,7 @@ public class InteractionScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && (interactPrompt.activeSelf) && (!GameManager.instance.menu.activeSelf) && canInteract)
         {
-            canInteract = false;
+            //canInteract = false;
             //[SerializeField] public NPCConversation myConversation;
             
             beginInteraction();
@@ -63,7 +64,24 @@ public class InteractionScript : MonoBehaviour
         {
             if (!ConversationManager.Instance.IsConversationActive)
             {
-                GameManager.instance.goPast();
+                if (objectID == 1)
+                {
+                    GameManager.instance.goPast();
+                }
+                else if (objectID == 2)
+                {
+                    GameManager.instance.goFutur();
+                }
+                else if (objectID == 3)
+                {
+                    GameManager.instance.goPresent();
+                }
+                else
+                {
+                    GameManager.instance.returnStage();
+                }
+                canInteract = true;
+                
             }
         }
     }
@@ -72,7 +90,7 @@ public class InteractionScript : MonoBehaviour
     {
         Debug.Log("IM bneing touched!!");
         ConversationManager.Instance.StartConversation(myConversation);
-
+        canInteract = false;
         //GameManager.instance.goPast();
 
 

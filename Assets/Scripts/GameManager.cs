@@ -34,11 +34,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M) && SceneManager.GetActiveScene().buildIndex == 1)
+        if (Input.GetKeyDown(KeyCode.M))
         {
             if(!menu.activeSelf)
             { menu.SetActive(true); }
             else { menu.SetActive(false); }
+        }
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            returnStage();
         }
     }
 
@@ -51,6 +56,51 @@ public class GameManager : MonoBehaviour
 
         stage.SetActive(false);
         past.SetActive(true);
+    }
+
+    public void goFutur()
+    {
+        if (menu.activeSelf)
+        {
+            menu.SetActive(false);
+        }
+
+        stage.SetActive(false);
+        futur.SetActive(true);
+    }
+
+    public void goPresent()
+    {
+        if (menu.activeSelf)
+        {
+            menu.SetActive(false);
+        }
+
+        stage.SetActive(false);
+        present.SetActive(true);
+    }
+
+    public void returnStage()
+    {
+        if (menu.activeSelf)
+        {
+            menu.SetActive(false);
+        }
+        if (past.activeSelf)
+        {
+            past.SetActive(false);
+        }
+        if (futur.activeSelf)
+        {
+            futur.SetActive(false);
+        }
+        if (present.activeSelf)
+        {
+            present.SetActive(false);
+        }
+
+        stage.SetActive(true);
+
     }
 
 }
