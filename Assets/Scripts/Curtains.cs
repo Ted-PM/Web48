@@ -153,7 +153,10 @@ public class Curtains : MonoBehaviour
 
         yield return new WaitForSeconds(CooldownDuration);
 
-        //openCurtain();
+        //if(isCutscene)
+        //{
+        //    FindFirstObjectByType<SpeakerDialogue>().enableDialogue();
+        //}
 
         canClose = true;
     }

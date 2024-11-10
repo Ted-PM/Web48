@@ -5,12 +5,18 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Menu : MonoBehaviour
 {
+    public static Menu instance;
     public TextMeshProUGUI characterDescriptor;
 
     public List<string> characterDescriptions;
 
     int index;
     int numDescriptions;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -36,11 +42,18 @@ public class Menu : MonoBehaviour
     public void displayPrevCharacter()
     {
         index--;
+
         if (index < 0)
         {
             index = numDescriptions - 1;
         }
         characterDescriptor.SetText(characterDescriptions[index]);
 
+    }
+
+    public void addCharacter(string text)
+    {
+        characterDescriptions.Add(text.ToString());
+        numDescriptions = characterDescriptions.Count;
     }
 }

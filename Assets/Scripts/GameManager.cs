@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public GameObject menu;
 
+    //int sceneCount = 1;
 
     private void Awake()
     {
