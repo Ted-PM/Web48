@@ -46,18 +46,30 @@ public class InteractionScript : MonoBehaviour
         //SpotLight = GetComponent<SpotLight>();  
         playerPos = FindFirstObjectByType<script_movement>().transform;         // get player location
         interactPrompt.SetActive(false);                                    // default interact prompt to off
-        interactText.SetText("Press 'E' to speak to " + objectName + "."); // set text to be displayed to string chosen in unity
+        if (objectID == -1)
+        {
+            interactText.SetText("Press 'E' to speak to " + objectName + "."); // set text to be displayed to string chosen in unity
+        }
+        else
+        {
+            interactText.SetText("Press 'E' to interact with " + objectName + "."); // set text to be displayed to string chosen in unity
+
+        }
         //SpotLight.orientation = Quaternion.Euler(this.transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ((Vector3.Distance(playerPos.position, this.transform.position) <= minDistance) && !interactPrompt.activeSelf && (!ConversationManager.Instance.IsConversationActive))
+        if ((Vector3.Distance(playerPos.position, this.transform.position) <= minDistance) && !interactPrompt.activeSelf && (!ConversationManager.Instance.IsConversationActive) && (!GameManager.instance.menu.activeSelf))
         {
             interactPrompt.SetActive(true);
         }
         else if (!(Vector3.Distance(playerPos.position, this.transform.position) <= minDistance) || ConversationManager.Instance.IsConversationActive)
+        {
+            interactPrompt.SetActive(false);
+        }
+        else if (GameManager.instance.menu.activeSelf)
         {
             interactPrompt.SetActive(false);
         }
@@ -75,6 +87,7 @@ public class InteractionScript : MonoBehaviour
         {
             if (!ConversationManager.Instance.IsConversationActive)
             {
+                //StartCoroutine(SmoothMove(startPosition));
                 canInteract = true;
 
             }
