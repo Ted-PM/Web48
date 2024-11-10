@@ -46,7 +46,15 @@ public class InteractionScript : MonoBehaviour
         //SpotLight = GetComponent<SpotLight>();  
         playerPos = FindFirstObjectByType<script_movement>().transform;         // get player location
         interactPrompt.SetActive(false);                                    // default interact prompt to off
-        interactText.SetText("Press 'E' to speak to " + objectName + "."); // set text to be displayed to string chosen in unity
+        if (objectID == -1)
+        {
+            interactText.SetText("Press 'E' to speak to " + objectName + "."); // set text to be displayed to string chosen in unity
+        }
+        else
+        {
+            interactText.SetText("Press 'E' to interact with " + objectName + "."); // set text to be displayed to string chosen in unity
+
+        }
         //SpotLight.orientation = Quaternion.Euler(this.transform.position);
     }
 
