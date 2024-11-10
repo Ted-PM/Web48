@@ -1,143 +1,127 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public class Curtains : MonoBehaviour
 {
     public Transform LcurtClose;
     public Transform LcurtOpen;
-
     public GameObject curtainL;
 
     public Transform RcurtClose;
     public Transform RcurtOpen;
-
     public GameObject curtainR;
 
     public float CooldownDuration = 1f;
+    public float curtainSpeed = 2f; // Speed of curtain movement (higher = faster)
 
-    bool canOpen = false;
-    bool canClose = false;
+    private bool canOpen = false;
+    private bool canClose = false;
 
-    //bool opening = false;
-    //bool closing = false;
     private void Start()
     {
+        // Initially set curtains to the closed position
         curtainL.transform.position = LcurtClose.position;
         curtainR.transform.position = RcurtClose.position;
-
-        //canOpen = false;
-        //StartCoroutine(StartCooldown());
     }
+
     private void Update()
     {
+        // Check if C is pressed to toggle curtain open/close
         if (Input.GetKeyDown(KeyCode.C))
         {
-            if((curtainL.transform.position.x == LcurtClose.position.x) && (curtainR.transform.position.x == RcurtClose.position.x))        // aka curtains are closed
+            // If curtains are closed, start opening
+            if (IsCurtainClosed())
             {
                 canClose = false;
-                Debug.Log("Start open curtains");
                 canOpen = true;
+                Debug.Log("Start opening curtains");
             }
-            else if ((curtainL.transform.position.x == LcurtOpen.position.x) && (curtainR.transform.position.x == RcurtOpen.position.x))    // aka curtains are open
+            // If curtains are open, start closing
+            else if (IsCurtainOpen())
             {
                 canOpen = false;
-                Debug.Log("Start close curtains");
                 canClose = true;
+                Debug.Log("Start closing curtains");
             }
         }
 
-        if ((curtainL.transform.position.x == LcurtClose.position.x) && (curtainR.transform.position.x == RcurtClose.position.x))        // aka curtains are closed
+        // Handle opening and closing curtains
+        if (canOpen) OpenCurtain();
+        if (canClose) CloseCurtains();
+    }
+
+    // Checks if curtains are at the closed position
+    bool IsCurtainClosed()
+    {
+        return Mathf.Approximately(curtainL.transform.position.x, LcurtClose.position.x) &&
+               Mathf.Approximately(curtainR.transform.position.x, RcurtClose.position.x);
+    }
+
+    // Checks if curtains are at the open position
+    bool IsCurtainOpen()
+    {
+        return Mathf.Approximately(curtainL.transform.position.x, LcurtOpen.position.x) &&
+               Mathf.Approximately(curtainR.transform.position.x, RcurtOpen.position.x);
+    }
+
+    // Smoothly open the curtains
+    void OpenCurtain()
+    {
+        // Move curtainL towards LcurtOpen
+        if (curtainL.transform.position.x < LcurtOpen.position.x)
         {
-            canClose = false;
+            curtainL.transform.position += new Vector3(curtainSpeed * Time.deltaTime, 0, 0);
         }
-        if ((curtainL.transform.position.x == LcurtOpen.position.x) && (curtainR.transform.position.x == RcurtOpen.position.x))    // aka curtains are open
+        // Move curtainR towards RcurtOpen
+        if (curtainR.transform.position.x > RcurtOpen.position.x)
+        {
+            curtainR.transform.position -= new Vector3(curtainSpeed * Time.deltaTime, 0, 0);
+        }
+
+        // Once both curtains are fully open, start cooldown
+        if (IsCurtainOpen())
         {
             canOpen = false;
-        }
-        //if (Input.GetKeyDown(KeyCode.O))
-        //{
-        //    canClose = false;
-        //    canOpen = true;
-        //}
-        //if (Input.GetKeyDown(KeyCode.C))
-        //{
-        //    canClose = true;
-        //    canOpen = false;
-        //}
-
-        openCurtain();
-        closeCurtains();
-    }
-
-    void openCurtain()
-    {
-
-        if (canOpen)
-        {
-            if (curtainL.transform.position.x > LcurtOpen.transform.position.x)
-            {
-                curtainL.transform.position += new Vector3((float)-0.5, 0, 0);
-                //curtainR.transform.position += new Vector3((float)0.5, 0, 0);
-            }
-            else
-            {
-                canOpen = false;
-            }
-            if (curtainR.transform.position.x < RcurtOpen.transform.position.x)
-            {
-                curtainR.transform.position += new Vector3((float)0.5, 0, 0);
-
-            }
             StartCoroutine(StartCooldown());
         }
-
     }
 
-    void closeCurtains()
+    // Smoothly close the curtains
+    void CloseCurtains()
     {
-
-        if (canClose)
+        // Move curtainL towards LcurtClose
+        if (curtainL.transform.position.x > LcurtClose.position.x)
         {
-            if (curtainL.transform.position.x < LcurtClose.transform.position.x)
-            {
-                curtainL.transform.position += new Vector3((float)0.5, 0, 0);
-                //curtainR.transform.position += new Vector3((float)-0.5, 0, 0);
-            }
-            else
-            {
-                canClose = false;
-            }
-            if (curtainR.transform.position.x > RcurtClose.transform.position.x)
-            {
-                curtainR.transform.position += new Vector3((float)-0.5, 0, 0);
-
-            }
-            StartCoroutine(StartCooldownClose());
+            curtainL.transform.position -= new Vector3(curtainSpeed * Time.deltaTime, 0, 0);
+        }
+        // Move curtainR towards RcurtClose
+        if (curtainR.transform.position.x < RcurtClose.position.x)
+        {
+            curtainR.transform.position += new Vector3(curtainSpeed * Time.deltaTime, 0, 0);
         }
 
+        // Once both curtains are fully closed, start cooldown
+        if (IsCurtainClosed())
+        {
+            canClose = false;
+            StartCoroutine(StartCooldown());
+        }
     }
 
+    // Cooldown after opening curtains
     public IEnumerator StartCooldown()
     {
-        canOpen = false;
-
+        // Wait for the cooldown period
         yield return new WaitForSeconds(CooldownDuration);
-
-        //openCurtain();
-
-        canOpen = true;
+        canOpen = true; // Allow next operation
     }
 
+    // Cooldown after closing curtains
     public IEnumerator StartCooldownClose()
     {
-        canClose = false;
-
+        // Wait for the cooldown period
         yield return new WaitForSeconds(CooldownDuration);
-
-        //openCurtain();
-
-        canClose = true;
+        canClose = true; // Allow next operation
     }
 }
