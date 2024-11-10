@@ -28,8 +28,11 @@ public class script_movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        setInput();
-        direction();
+        if (!GameManager.instance.menu.activeSelf && !ZoomOnObject.instance.start)
+        {
+            setInput();
+            direction();
+        }
     }
 
     private void FixedUpdate()

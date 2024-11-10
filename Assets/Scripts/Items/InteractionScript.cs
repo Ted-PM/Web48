@@ -28,7 +28,7 @@ public class InteractionScript : MonoBehaviour
     void Start()
     {
         //SpotLight = GetComponent<SpotLight>();  
-        playerPos = FindFirstObjectByType<PlayerMover>().transform;         // get player location
+        playerPos = FindFirstObjectByType<script_movement>().transform;         // get player location
         interactPrompt.SetActive(false);                                    // default interact prompt to off
         interactText.SetText("Press 'E' to investigate the " + objectName); // set text to be displayed to string chosen in unity
         //SpotLight.orientation = Quaternion.Euler(this.transform.position);

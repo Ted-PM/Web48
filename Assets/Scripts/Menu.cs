@@ -60,11 +60,13 @@ public class Menu : MonoBehaviour
 
     }
 
-    public void addCharacter(string text)
+    public void addCharacter(string text) // cyar index 
     {
         characterDescriptions.Add(text.ToString());
         numDescriptions = characterDescriptions.Count;
         DontDestroyOnLoad(instance);
         GameManager.instance.menu.SetActive(false);
+        //Item* item = item_letter;
+        //charDesc.Add(*item.getDescription())
     }
 }
