@@ -7,7 +7,7 @@ using UnityEngine.Pool;
 public class ZoomOnObject : MonoBehaviour
 {
     public static ZoomOnObject instance;
-    //bool start = false;
+    public bool start = false;
     bool wait = false;
     public float waitTime = 5f;
     int objectID = 0;
@@ -34,6 +34,7 @@ public class ZoomOnObject : MonoBehaviour
 
     public void startZoom(Vector3 passedPos, int OID)
     {
+        start = true;
         objectID = OID;
         //start = true;
 
@@ -50,8 +51,12 @@ public class ZoomOnObject : MonoBehaviour
         //    //}
 
         //}
+        //for (int i = 0; i < 50; i++) 
+        //{
+        //    m_MainCamera.transform.position = new Vector3(passedPos.x - (float)i, ;
+        //}
 
-        m_MainCamera.transform.position = passedPos;
+        m_MainCamera.transform.position = passedPos -  new Vector3(3f, -3f, 12f);
         StartCoroutine(StartCooldown());
 
 

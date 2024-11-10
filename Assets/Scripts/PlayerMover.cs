@@ -22,7 +22,7 @@ public class PlayerMover : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.instance.menu.activeSelf)
+        if (!GameManager.instance.menu.activeSelf && !ZoomOnObject.instance.start)
         {
             // Movement
             float moveForward = Input.GetAxis("Vertical") * moveSpeed;
