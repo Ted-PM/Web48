@@ -43,11 +43,11 @@ public class Menu : MonoBehaviour
 
         if (characterDescriptions.Count <= 0) 
         {
-            characterDescriptions.Add("Nicholas (The Director):\r\n\n- Calculating visionary\r\n- Quietly ambitious\r\n- Obsessed with control\r\n- Always watching");
-            characterDescriptions.Add("Joana (My Secret Lover):\r\n\n- Relentlessly ambitious\r\n- Manipulative charm\r\n- Driven by fame\r\n- Knows her power");
-            characterDescriptions.Add("Miles (My Friend):\r\n\n- Loyal, but bitter\r\n- Insecure shadow\r\n- Frustrated friend\r\n- Holds grudges");
-            characterDescriptions.Add("Silas( My Rival):\r\n\n- Eager rival\r\n- Hungry for spotlight\r\n- Rash and overconfident\r\n- Idolizes success");
-            characterDescriptions.Add("Kylie (My Wife):\r\n\n- Faithful, yet weary\r\n- Sees my flaws\r\n- Kind-hearted strength\r\n- Devoted, despite all");
+            characterDescriptions.Add("Nicholas (Play Director):\r\n\n- Calculating visionary\r\n- Quietly ambitious\r\n- Obsessed with control\r\n- Always watching");
+            characterDescriptions.Add("Joana (Secret Girlfriend, Miles Wife):\r\n\n- Relentlessly ambitious\r\n- Manipulative charm\r\n- Driven by fame\r\n- Knows her power");
+            characterDescriptions.Add("Miles (Bestfriend):\r\n\n- Loyal, but bitter\r\n- Insecure shadow\r\n- Frustrated friend\r\n- Holds grudges");
+            characterDescriptions.Add("Silas (My Apprentice):\r\n\n- Eager rival\r\n- Hungry for spotlight\r\n- Rash and overconfident\r\n- Idolizes success");
+            characterDescriptions.Add("Kylie (Wife):\r\n\n- Faithful, yet weary\r\n- Sees my flaws\r\n- Kind-hearted strength\r\n- Devoted, despite all");
         }
 
         numDescriptions = characterDescriptions.Count;
