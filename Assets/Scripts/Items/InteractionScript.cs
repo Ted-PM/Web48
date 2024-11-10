@@ -64,24 +64,8 @@ public class InteractionScript : MonoBehaviour
         {
             if (!ConversationManager.Instance.IsConversationActive)
             {
-                if (objectID == 1)
-                {
-                    GameManager.instance.goPast();
-                }
-                else if (objectID == 2)
-                {
-                    GameManager.instance.goFutur();
-                }
-                else if (objectID == 3)
-                {
-                    GameManager.instance.goPresent();
-                }
-                else
-                {
-                    GameManager.instance.returnStage();
-                }
                 canInteract = true;
-                
+
             }
         }
     }
@@ -91,21 +75,6 @@ public class InteractionScript : MonoBehaviour
         Debug.Log("IM bneing touched!!");
         ConversationManager.Instance.StartConversation(myConversation);
         canInteract = false;
-        //GameManager.instance.goPast();
-
-
-
-
-
-        //GameManager.instance.menu.SetActive(true);
-        //FindFirstObjectByType<Menu>().addCharacter(characterInfo);
-        //Menu.instance.addCharacter(characterInfo);
-        //GameManager.instance.menu.SetActive(false);
-
-        //ZoomOnObject.instance.startZoom(this.transform.position, objectID);
-
-
-        //GameManager.instance.beginInteraction(objectID);
 
     }
 

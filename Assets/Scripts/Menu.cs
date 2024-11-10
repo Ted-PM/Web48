@@ -7,31 +7,54 @@ public class Menu : MonoBehaviour
 {
     public static Menu instance;
     public TextMeshProUGUI characterDescriptor;
+    public Image characterImage;
 
     static List<string> characterDescriptions;
+    public List<Image> characterImageList;
 
     int index;
     int numDescriptions;
 
     private void Awake()
     {
-        characterDescriptions = new List<string>();
+        if (characterDescriptions == null)
+        {
+            characterDescriptions = new List<string>();
+        }
+
         //DontDestroyOnLoad(this.gameObject);
         instance = this;
-
+        DontDestroyOnLoad(instance);
     }
+    /// <summary>
+    /// 1. Nicholas
+    /// 2. Joana
+    /// 3. Miles
+    /// 4. Silas
+    /// 5. Kylie
+    /// </summary>
 
     // Start is called before the first frame update
     void Start()
     {
-        numDescriptions = characterDescriptions.Count;
+        
+        //numDescriptions = characterDescriptions.Count;
         index = 0;
 
+        if (characterDescriptions.Count <= 0) 
+        {
+            characterDescriptions.Add("Nicholas:\r\n\n- Calculating visionary\r\n- Quietly ambitious\r\n- Obsessed with control\r\n- Always watching");
+            characterDescriptions.Add("Joana:\r\n\n- Relentlessly ambitious\r\n- Manipulative charm\r\n- Driven by fame\r\n- Knows her power");
+            characterDescriptions.Add("Miles:\r\n\n- Loyal, but bitter\r\n- Insecure shadow\r\n- Frustrated friend\r\n- Holds grudges");
+            characterDescriptions.Add("Silas:\r\n\n- Eager rival\r\n- Hungry for spotlight\r\n- Rash and overconfident\r\n- Idolizes success");
+            characterDescriptions.Add("Kylie:\r\n\n- Faithful, yet weary\r\n- Sees my flaws\r\n- Kind-hearted strength\r\n- Devoted, despite all");
+        }
 
-        characterDescriptions.Add("Hello i am charmacter 1");
-        characterDescriptions.Add("am chamracetre 2 :D");
-        characterDescriptions.Add("cool character 3, hes so cool");
-        displayNextCharacter();
+        numDescriptions = characterDescriptions.Count;
+
+        characterDescriptor.SetText(characterDescriptions[index]);
+        characterImage.sprite = characterImageList[index].sprite;
+        //displayNextCharacter();
     }
 
     // Update is called once per frame
@@ -45,6 +68,7 @@ public class Menu : MonoBehaviour
             index = 0;
         }
         characterDescriptor.SetText(characterDescriptions[index]);
+        characterImage.sprite = characterImageList[index].sprite;
     }
 
     public void displayPrevCharacter()
@@ -57,7 +81,7 @@ public class Menu : MonoBehaviour
             index = numDescriptions - 1;
         }
         characterDescriptor.SetText(characterDescriptions[index]);
-
+        characterImage.sprite = characterImageList[index].sprite;
     }
 
     public void addCharacter(string text) // cyar index 
@@ -68,5 +92,11 @@ public class Menu : MonoBehaviour
         GameManager.instance.menu.SetActive(false);
         //Item* item = item_letter;
         //charDesc.Add(*item.getDescription())
+    }
+
+    public void addCharacterInfo(string newInfo, int charIndex)
+    {
+        characterDescriptions[charIndex] = characterDescriptions[charIndex].ToString() + newInfo;
+        GameManager.instance.menu.SetActive(false);
     }
 }
