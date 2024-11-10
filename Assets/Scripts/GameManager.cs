@@ -1,29 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
     public GameObject menu;
-<<<<<<< HEAD
-    public GameObject player;
-=======
     public GameObject stage;
     public GameObject past;
     public GameObject present;
     public GameObject futur;
 
->>>>>>> Alex
-
-    //int sceneCount = 1;
-
     private void Awake()
     {
         instance = this;
-        //SceneManager.LoadScene(0);
     }
 
     private void Start()
@@ -35,28 +26,19 @@ public class GameManager : MonoBehaviour
         futur.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.M))
         {
-            if(!menu.activeSelf)
-            { menu.SetActive(true); }
-            else { menu.SetActive(false); }
+            if (!menu.activeSelf)
+            {
+                menu.SetActive(true);
+            }
+            else
+            {
+                menu.SetActive(false);
+            }
         }
-<<<<<<< HEAD
-        //if(player.transform.position.z<8f)
-        //    player.GetComponent<Rigidbody>().velocity=(new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + .1f));
-        //else if (player.transform.position.z<32f)
-        //    player.GetComponent<Rigidbody>().velocity = (new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z - .1f));
-
-        //if (player.transform.position.x > 43f)
-        //    player.GetComponent<Rigidbody>().velocity = (new Vector3(player.transform.position.x - .1f, player.transform.position.y, player.transform.position.z));
-        //else if (player.transform.position.x<-43f)
-        //    player.GetComponent<Rigidbody>().velocity = (new Vector3(player.transform.position.x+.1f, player.transform.position.y,player.transform.position.z));
-    }
-=======
->>>>>>> Alex
 
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -66,7 +48,7 @@ public class GameManager : MonoBehaviour
 
     public void goPast()
     {
-        if(menu.activeSelf)
+        if (menu.activeSelf)
         {
             menu.SetActive(false);
         }
@@ -117,7 +99,5 @@ public class GameManager : MonoBehaviour
         }
 
         stage.SetActive(true);
-
     }
-
 }
