@@ -15,7 +15,11 @@ public class Menu : MonoBehaviour
 
     private void Awake()
     {
-        characterDescriptions = new List<string>();
+        if (characterDescriptions == null)
+        {
+            characterDescriptions = new List<string> ();    
+        }
+        //characterDescriptions = new List<string>();
         //DontDestroyOnLoad(this.gameObject);
         instance = this;
 

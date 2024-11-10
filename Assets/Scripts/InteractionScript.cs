@@ -18,7 +18,6 @@ public class InteractionScript : MonoBehaviour
 
     public string characterInfo;
 
-
     //SpotLight SpotLight;
 
     bool canInteract = true;

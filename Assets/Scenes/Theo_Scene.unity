@@ -1275,6 +1275,21 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7966929213129420934, guid: 477f94c696c4a0f48a90da50fdd526cb, type: 3}
   m_PrefabInstance: {fileID: 1228194201577180259}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &360230553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360230552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96309df6fa14d6a47a4ea741fbab6dc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRB: {fileID: 1228194201577180260}
+  speed: 12
+  turnSpeed: 180
 --- !u!1 &419685691
 GameObject:
   m_ObjectHideFlags: 0
@@ -1428,10 +1443,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterDescriptor: {fileID: 1477928436}
-  characterDescriptions:
-  - CHARACTER 1 DESCRIPTION
-  - CHARACTER 2 DESCRIPTION
-  - PENIS
 --- !u!1 &488168616
 GameObject:
   m_ObjectHideFlags: 0
@@ -3657,6 +3668,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 420948023946327369, guid: 477f94c696c4a0f48a90da50fdd526cb, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2443986499028121789, guid: 477f94c696c4a0f48a90da50fdd526cb, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -3712,8 +3727,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7966929213129420934, guid: 477f94c696c4a0f48a90da50fdd526cb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 360230553}
   m_SourcePrefab: {fileID: 100100000, guid: 477f94c696c4a0f48a90da50fdd526cb, type: 3}
+--- !u!54 &1228194201577180260 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 8444310837671725052, guid: 477f94c696c4a0f48a90da50fdd526cb, type: 3}
+  m_PrefabInstance: {fileID: 1228194201577180259}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7638870149022737101
 PrefabInstance:
   m_ObjectHideFlags: 0
