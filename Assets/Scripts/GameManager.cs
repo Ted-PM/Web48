@@ -1,3 +1,4 @@
+using DialogueEditor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,12 +35,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M) && !ConversationManager.Instance.IsConversationActive)
         {
             if(!menu.activeSelf)
             { menu.SetActive(true); }
             else { menu.SetActive(false); }
         }
+        if (menu.activeSelf && ConversationManager.Instance.IsConversationActive)
+        {
+            menu.SetActive(false);
+        }
+
 
         if (Input.GetKeyDown(KeyCode.P))
         {
