@@ -506,6 +506,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterDescriptor: {fileID: 1477928436}
+  characterImage: {fileID: 0}
+  characterImageList: []
 --- !u!4 &521747042 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4316797745073419265, guid: 68842aecdf489c140aaf33266a267284, type: 3}
@@ -1227,6 +1229,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 471936031}
+  stage: {fileID: 0}
+  past: {fileID: 0}
+  present: {fileID: 0}
+  futur: {fileID: 0}
 --- !u!1 &1762665913
 GameObject:
   m_ObjectHideFlags: 0
