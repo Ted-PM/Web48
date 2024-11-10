@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/PlayerMovement.cs.meta
 guid: 96309df6fa14d6a47a4ea741fbab6dc0
+========
+guid: ad7c7c8c35659ff4599cc7aeec30db95
+>>>>>>>> Alex:Assets/Scripts/Curtain.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
