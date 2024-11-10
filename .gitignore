@@ -70,3 +70,7 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Assets/Prefabs/Player.prefab.meta
+Assets/3d/rocking-chair/rockingchair83h_DefaultMaterial_NormalGL.png.meta
+Assets/Prefabs/Character.prefab.meta
+Assets/Prefabs/Character.prefab.meta
