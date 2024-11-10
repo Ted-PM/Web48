@@ -87,6 +87,7 @@ public class InteractionScript : MonoBehaviour
         {
             if (!ConversationManager.Instance.IsConversationActive)
             {
+                //StartCoroutine(SmoothMove(startPosition));
                 canInteract = true;
 
             }
