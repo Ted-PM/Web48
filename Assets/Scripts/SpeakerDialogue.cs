@@ -46,7 +46,7 @@ public class SpeakerDialogue : MonoBehaviour
         else
         {
             speakerCanvas.SetActive(false);
-            GameManager.instance.beginInteraction(1);
+            //GameManager.instance.beginInteraction(1);
         }
     }
 }

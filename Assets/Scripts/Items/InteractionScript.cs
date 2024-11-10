@@ -1,3 +1,4 @@
+using DialogueEditor;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -16,7 +17,11 @@ public class InteractionScript : MonoBehaviour
     public GameObject interactPrompt;
     public TextMeshProUGUI interactText;
 
-    public string characterInfo;
+    [SerializeField] public NPCConversation myConversation;
+
+
+
+    //public string characterInfo;
 
 
     //SpotLight SpotLight;
@@ -30,7 +35,7 @@ public class InteractionScript : MonoBehaviour
         //SpotLight = GetComponent<SpotLight>();  
         playerPos = FindFirstObjectByType<script_movement>().transform;         // get player location
         interactPrompt.SetActive(false);                                    // default interact prompt to off
-        interactText.SetText("Press 'E' to investigate the " + objectName); // set text to be displayed to string chosen in unity
+        interactText.SetText("Press 'E' to speak to " + objectName + "."); // set text to be displayed to string chosen in unity
         //SpotLight.orientation = Quaternion.Euler(this.transform.position);
     }
 
@@ -49,20 +54,37 @@ public class InteractionScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && (interactPrompt.activeSelf) && (!GameManager.instance.menu.activeSelf) && canInteract)
         {
             canInteract = false;
+            //[SerializeField] public NPCConversation myConversation;
+            
             beginInteraction();
+        }
+
+        if (!canInteract)
+        {
+            if (!ConversationManager.Instance.IsConversationActive)
+            {
+                GameManager.instance.goPast();
+            }
         }
     }
 
     void beginInteraction()
     {
         Debug.Log("IM bneing touched!!");
+        ConversationManager.Instance.StartConversation(myConversation);
 
-        GameManager.instance.menu.SetActive(true);
+        //GameManager.instance.goPast();
+
+
+
+
+
+        //GameManager.instance.menu.SetActive(true);
         //FindFirstObjectByType<Menu>().addCharacter(characterInfo);
-        Menu.instance.addCharacter(characterInfo);
+        //Menu.instance.addCharacter(characterInfo);
         //GameManager.instance.menu.SetActive(false);
 
-        ZoomOnObject.instance.startZoom(this.transform.position, objectID);
+        //ZoomOnObject.instance.startZoom(this.transform.position, objectID);
 
 
         //GameManager.instance.beginInteraction(objectID);
