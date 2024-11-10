@@ -1,3 +1,4 @@
+using DialogueEditor;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -8,6 +9,16 @@ using UnityEngine.UI;
 
 public class InteractionScript : MonoBehaviour
 {
+    public int objectID = -1;
+    /// <^corresponds to character in menu>
+    /// 0. Nicholas
+    /// 1. Joana
+    /// 2. Miles
+    /// 3. Silas
+    /// 4. Kylie
+    /// </summary>
+    public string newMenuText = "";
+
     Transform playerPos;
     public float minDistance;
 
@@ -16,57 +27,91 @@ public class InteractionScript : MonoBehaviour
     public GameObject interactPrompt;
     public TextMeshProUGUI interactText;
 
-    public string characterInfo;
+    //[SerializeField] public NPCConversation myConversation;
+    public NPCConversation myConversation;
+
+
+
+    //public string characterInfo;
 
 
     //SpotLight SpotLight;
-
+      
     bool canInteract = true;
 
-    public int objectID;           // will be 1,2 or 3, decides which scesne to load after interacted with
+    //public int objectID;           // will be 1,2 or 3, decides which scesne to load after interacted with
 
     void Start()
     {
         //SpotLight = GetComponent<SpotLight>();  
         playerPos = FindFirstObjectByType<script_movement>().transform;         // get player location
         interactPrompt.SetActive(false);                                    // default interact prompt to off
-        interactText.SetText("Press 'E' to investigate the " + objectName); // set text to be displayed to string chosen in unity
+        if (objectID == -1)
+        {
+            interactText.SetText("Press 'E' to speak to " + objectName + "."); // set text to be displayed to string chosen in unity
+        }
+        else
+        {
+            interactText.SetText("Press 'E' to interact with " + objectName + "."); // set text to be displayed to string chosen in unity
+
+        }
         //SpotLight.orientation = Quaternion.Euler(this.transform.position);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ((Vector3.Distance(playerPos.position, this.transform.position) <= minDistance) && !interactPrompt.activeSelf)
+        if ((Vector3.Distance(playerPos.position, this.transform.position) <= minDistance) && !interactPrompt.activeSelf && (!ConversationManager.Instance.IsConversationActive))
         {
             interactPrompt.SetActive(true);
         }
-        else if (!(Vector3.Distance(playerPos.position, this.transform.position) <= minDistance))
+        else if (!(Vector3.Distance(playerPos.position, this.transform.position) <= minDistance) || ConversationManager.Instance.IsConversationActive)
         {
             interactPrompt.SetActive(false);
         }
 
+
         if (Input.GetKeyDown(KeyCode.E) && (interactPrompt.activeSelf) && (!GameManager.instance.menu.activeSelf) && canInteract)
         {
-            canInteract = false;
+            //canInteract = false;
+            //[SerializeField] public NPCConversation myConversation;
+            
             beginInteraction();
+        }
+
+        if (!canInteract)
+        {
+            if (!ConversationManager.Instance.IsConversationActive)
+            {
+                canInteract = true;
+
+            }
         }
     }
 
     void beginInteraction()
     {
         Debug.Log("IM bneing touched!!");
+        ConversationManager.Instance.StartConversation(myConversation);
+        canInteract = false;
 
-        GameManager.instance.menu.SetActive(true);
-        //FindFirstObjectByType<Menu>().addCharacter(characterInfo);
-        Menu.instance.addCharacter(characterInfo);
-        //GameManager.instance.menu.SetActive(false);
-
-        ZoomOnObject.instance.startZoom(this.transform.position, objectID);
-
-
-        //GameManager.instance.beginInteraction(objectID);
+        if (objectID != -1)
+        {
+            addDescToMenu();
+        }
 
     }
+
+    void addDescToMenu()
+    {
+        if (objectID != -1)
+        {
+            GameManager.instance.menu.SetActive(true);
+            Menu.instance.addCharacterInfo(newMenuText, objectID);
+            objectID = -1;
+        }
+    }
+
+
 
 }
