@@ -11,6 +11,7 @@ public class script_movement : MonoBehaviour
     public float speed = 12;
     public float turnSpeed = 180f;
     private Animator lAnimator;
+
     void Start()
     {
         bodyCollider = GetComponent<BoxCollider>();

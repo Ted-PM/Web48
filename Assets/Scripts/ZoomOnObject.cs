@@ -69,7 +69,7 @@ public class ZoomOnObject : MonoBehaviour
         wait = false;
 
         yield return new WaitForSeconds(waitTime);
-        GameManager.instance.beginInteraction(objectID);
+        //GameManager.instance.beginInteraction(objectID);
         m_MainCamera.transform.position = camPos.transform.position;
 
         wait = true;

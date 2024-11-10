@@ -10,7 +10,7 @@ public class StartScene : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            GameManager.instance.beginInteraction(1);
+            //GameManager.instance.beginInteraction(1);
         }
     }
 }
