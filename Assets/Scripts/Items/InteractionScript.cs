@@ -61,11 +61,15 @@ public class InteractionScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Vector3.Distance(playerPos.position, this.transform.position) <= minDistance) && !interactPrompt.activeSelf && (!ConversationManager.Instance.IsConversationActive))
+        if ((Vector3.Distance(playerPos.position, this.transform.position) <= minDistance) && !interactPrompt.activeSelf && (!ConversationManager.Instance.IsConversationActive) && (!GameManager.instance.menu.activeSelf))
         {
             interactPrompt.SetActive(true);
         }
         else if (!(Vector3.Distance(playerPos.position, this.transform.position) <= minDistance) || ConversationManager.Instance.IsConversationActive)
+        {
+            interactPrompt.SetActive(false);
+        }
+        else if (GameManager.instance.menu.activeSelf)
         {
             interactPrompt.SetActive(false);
         }

@@ -1,3 +1,4 @@
+using DialogueEditor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,8 +29,12 @@ public class script_movement : MonoBehaviour
     {
         //if (!GameManager.instance.menu.activeSelf && !ZoomOnObject.instance.start)
         //{
-        setInput();
-        direction();
+        if ((!ConversationManager.Instance.IsConversationActive) && !GameManager.instance.menu.activeSelf)
+        {
+            setInput();
+            direction();
+        }
+
         
         
         //}

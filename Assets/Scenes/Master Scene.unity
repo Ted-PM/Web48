@@ -1230,7 +1230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e38b08a09848294a86d51d25ad99ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectID: 3
+  objectID: -1
   newMenuText: 
   minDistance: 5
   objectName: PresentPerson
@@ -1452,7 +1452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e38b08a09848294a86d51d25ad99ba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectID: 2
+  objectID: -1
   newMenuText: 
   minDistance: 5
   objectName: FuturPerson
