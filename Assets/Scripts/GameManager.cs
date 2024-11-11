@@ -1,13 +1,21 @@
 using DialogueEditor;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
+
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    public VideoPlayer videoToPlay;
+    long numFrames;
+
+    public GameObject stageThing;
 
     public GameObject menu;
     public GameObject stage;
@@ -21,22 +29,42 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        //videoToPlay.Play();
         //SceneManager.LoadScene(0);
     }
 
     private void Start()
     {
-        stage.SetActive(true);
+        stageThing.SetActive(false);
+        stage.SetActive(false);
         menu.SetActive(false);
         past.SetActive(false);
         present.SetActive(false);
         futur.SetActive(false);
+
+        videoToPlay.Play();
+        numFrames = Convert.ToInt64(videoToPlay.GetComponent<VideoPlayer>().frameCount);
+        numFrames -= 5;
+
         //curtainsOpen();
+    }
+
+    void playVideo()
+    {
+        if (((videoToPlay != null) && (videoToPlay.frame > numFrames)) )
+        {
+            stageThing.SetActive(true);
+            stage.SetActive(true);
+            Destroy(videoToPlay);
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        playVideo();
+
         if (Input.GetKeyDown(KeyCode.M) && !ConversationManager.Instance.IsConversationActive)
         {
             if(!menu.activeSelf)
