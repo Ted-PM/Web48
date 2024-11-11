@@ -116,7 +116,4 @@ public class InteractionScript : MonoBehaviour
             objectID = -1;
         }
     }
-
-
-
 }

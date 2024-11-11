@@ -28,11 +28,11 @@ public class Menu : MonoBehaviour
         DontDestroyOnLoad(instance);
     }
     /// <summary>
-    /// 0. Nicholas
-    /// 1. Joana
-    /// 2. Miles
-    /// 3. Silas
-    /// 4. Kylie
+    /// 1. Nicholas
+    /// 2. Joana
+    /// 3. Miles
+    /// 4. Silas
+    /// 5. Kylie
     /// </summary>
 
     // Start is called before the first frame update

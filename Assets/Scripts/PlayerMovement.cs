@@ -17,6 +17,7 @@ public class script_movement : MonoBehaviour
     {
         bodyCollider = GetComponent<BoxCollider>();
         playerRB = GetComponent<Rigidbody>();
+        bodyCollider = GetComponent <BoxCollider>();    
         lAnimator = GetComponent<Animator>();
         if (lAnimator != null )
         {
@@ -66,5 +67,10 @@ public class script_movement : MonoBehaviour
     void movePlayer()
     {
         playerRB.MovePosition((transform.position + (transform.forward * _input.normalized.magnitude) * speed * Time.deltaTime));
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        _input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
     }
 }
